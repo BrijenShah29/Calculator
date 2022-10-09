@@ -61,6 +61,13 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
+        let doubletap = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
+            doubletap.numberOfTapsRequired = 2
+            totalButton.addGestureRecognizer(doubletap)
+                                               
+   
         // Do any additional setup after loading the view.
         calculatorWorking.layer.cornerRadius = 20
        // calculatorWorking.layer.borderWidth = 2
@@ -139,6 +146,13 @@ class ViewController: UIViewController
         clearAll()
         
     }
+    // implementing double tap gesture
+    @objc private func didDoubleTap(_ gesture: UITapGestureRecognizer){
+        calculatorWorking.text=calculatorResult.text
+        workings = calculatorWorking.text ?? " "
+        calculatorResult.text=" "
+        
+    }
     // setting up clear all function
     func clearAll()
     {
@@ -179,7 +193,34 @@ class ViewController: UIViewController
     
     @IBAction func plusMinus(_ sender: Any) {
         
+        if(!workings.starts(with:"-"))
+        {
+            let minusValue = "-"+workings
+            workings = minusValue
+            calculatorWorking.text = minusValue
+            
+            
+        }
+        else{
+            //workings = "-"+workings
+            workings.removeFirst()
+            calculatorWorking.text=workings
+            
+          //  calculatorWorking.text = workings
+            
+        }
+            
+    //numberString.insert("-", at: numberString.startIndex)
+       // let minusValue = "-"+workings
+       // workings = minusValue
+       // calculatorWorking.text = minusValue
+       // workings = minusValue
         
+       /* if(!calculatorWorking.text[0]=="-")
+        {
+            calculatorWorking.text=workings
+        }
+        */
         
     }
     
@@ -222,6 +263,12 @@ class ViewController: UIViewController
             let mathResult = mathExpression.expressionValue(with: nil, context: nil) as! Double // saving result as double
             let totalResultString = resultFormation(mathResult: mathResult)
             calculatorResult.text = totalResultString
+        
+       
+       
+        
+        
+      
             
         //}
        // catch{

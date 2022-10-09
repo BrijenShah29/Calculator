@@ -24,7 +24,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 + 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rA-he-EKm">
-                                        <rect key="frame" x="20" y="41" width="350" height="40.666666666666657"/>
+                                        <rect key="frame" x="20" y="41" width="349" height="40.666666666666657"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xS1-bn-jk8" secondAttribute="trailing" constant="20" id="HCj-Bm-QjQ"/>
                                     <constraint firstItem="xS1-bn-jk8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Prp-K0-2dH" secondAttribute="leading" constant="3" id="NAv-0d-vay"/>
                                     <constraint firstItem="xS1-bn-jk8" firstAttribute="height" secondItem="7rA-he-EKm" secondAttribute="height" id="Ooi-fU-GcA"/>
-                                    <constraint firstAttribute="trailing" secondItem="7rA-he-EKm" secondAttribute="trailing" constant="19" id="RaH-Hx-N2m"/>
+                                    <constraint firstAttribute="trailing" secondItem="7rA-he-EKm" secondAttribute="trailing" constant="20" id="RaH-Hx-N2m"/>
                                     <constraint firstAttribute="bottom" secondItem="xS1-bn-jk8" secondAttribute="bottom" id="iLC-lF-klW"/>
                                     <constraint firstItem="7rA-he-EKm" firstAttribute="leading" secondItem="Prp-K0-2dH" secondAttribute="leading" constant="20" id="kO1-XL-sBR"/>
                                 </constraints>
