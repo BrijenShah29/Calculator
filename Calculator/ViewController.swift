@@ -1,9 +1,12 @@
 //
 //  ViewController.swift
-//  Calculator
-//
+//  Calculator - This current program helps end-user to make calculation with some basic functionalities.
+//Program name : MAPD 714 iOS Development
 //  Created by Brijen Shah on 2022-09-25.
-//
+//Studen Name : Brijen Jayeshbhai Shah
+// Student Id : 301271637
+//Student Name : Ajay Shrivastav
+//Student id : 301284668
 
 import UIKit
 
@@ -19,7 +22,7 @@ class ViewController: UIViewController
     
     @IBOutlet weak var workingView: UIView!
     @IBOutlet weak var stackview: UIStackView!
-    // Button Connection
+    // Button Connections
     
     @IBOutlet weak var moduloButton: UIButton!
     @IBOutlet weak var acbutton: UIButton!
@@ -62,7 +65,7 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         
-        
+        // double tap Gesture
         let doubletap = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
             doubletap.numberOfTapsRequired = 2
             totalButton.addGestureRecognizer(doubletap)
@@ -181,7 +184,7 @@ class ViewController: UIViewController
     
     @IBAction func calcBack(_ sender: Any) {
         
-        if(!workings.isEmpty)
+        if(!workings.isEmpty)               // adding back button functionality
         {
             workings.removeLast()
             calculatorWorking.text = workings
@@ -193,7 +196,7 @@ class ViewController: UIViewController
     
     @IBAction func plusMinus(_ sender: Any) {
         
-        if(!workings.starts(with:"-"))
+        if(!workings.starts(with:"-"))          // setting up +/- button
         {
             let minusValue = "-"+workings
             workings = minusValue
@@ -263,10 +266,7 @@ class ViewController: UIViewController
             let mathResult = mathExpression.expressionValue(with: nil, context: nil) as! Double // saving result as double
             let totalResultString = resultFormation(mathResult: mathResult)
             calculatorResult.text = totalResultString
-        
-       
-       
-        
+    
         
       
             
@@ -353,4 +353,3 @@ class ViewController: UIViewController
    
    
 }
-
