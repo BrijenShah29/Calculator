@@ -12,9 +12,14 @@ import UIKit
 
 class ViewController: UIViewController
 {
-
-    @IBOutlet weak var calculatorWorking: UILabel!
-    @IBOutlet weak var calculatorResult: UILabel!
+    var first = ""
+    var second = ""
+    var function = ""
+    var result = 0.0
+    var workings = ""
+    var userinput = ""
+    @IBOutlet weak var calcWorkingDisplay: UILabel!
+    @IBOutlet weak var calResultDisplay: UILabel!
    
     
     @IBOutlet weak var resultView: UIView!
@@ -58,7 +63,7 @@ class ViewController: UIViewController
     @IBOutlet weak var pointButton: UIButton!
     
     
-    var workings: String = ""
+  
     
     //hello
     override func viewDidLoad()
@@ -72,9 +77,9 @@ class ViewController: UIViewController
                                                
    
         // Do any additional setup after loading the view.
-        calculatorWorking.layer.cornerRadius = 20
+        calcWorkingDisplay.layer.cornerRadius = 20
        // calculatorWorking.layer.borderWidth = 2
-        calculatorResult.layer.cornerRadius = 20
+        calResultDisplay.layer.cornerRadius = 20
        // calculatorResult.layer.borderWidth = 2
        // calculatorResult.layer.borderColor = UIColor.white.cgColor
        // calculatorWorking.layer.borderColor = UIColor.white.cgColor
@@ -151,24 +156,30 @@ class ViewController: UIViewController
     }
     // implementing double tap gesture
     @objc private func didDoubleTap(_ gesture: UITapGestureRecognizer){
-        calculatorWorking.text=calculatorResult.text
-        workings = calculatorWorking.text ?? " "
-        calculatorResult.text=" "
+        calcWorkingDisplay.text=calResultDisplay.text
+        workings = calcWorkingDisplay.text ?? " "
+        calResultDisplay.text=" "
         
     }
     // setting up clear all function
     func clearAll()
     {
+        first = ""
+        second = ""
+        userinput = ""
+        function = ""
+        result = 0.0
+        calcWorkingDisplay.text = " "
         workings = ""
-        calculatorWorking.text=" "
-        calculatorResult.text=" "
+        calResultDisplay.text="0"
     }
     
     // setting up working panel text
     func workingPanel(value : String)
     {
         workings = workings + value;
-        calculatorWorking.text = workings;
+        calcWorkingDisplay.text = workings;
+        //first = workings
         
     }
     
@@ -187,7 +198,8 @@ class ViewController: UIViewController
         if(!workings.isEmpty)               // adding back button functionality
         {
             workings.removeLast()
-            calculatorWorking.text = workings
+            userinput.removeLast()
+            calcWorkingDisplay.text = workings
         }
         
         
@@ -195,7 +207,7 @@ class ViewController: UIViewController
     }
     
     @IBAction func plusMinus(_ sender: Any) {
-        
+      /*
         if(!workings.starts(with:"-"))          // setting up +/- button
         {
             let minusValue = "-"+workings
@@ -213,6 +225,10 @@ class ViewController: UIViewController
             
         }
             
+       */
+       
+       
+       
     //numberString.insert("-", at: numberString.startIndex)
        // let minusValue = "-"+workings
        // workings = minusValue
@@ -229,30 +245,48 @@ class ViewController: UIViewController
     
     @IBAction func calcModule(_ sender: Any) {
         
+        function = "%"
+        first = userinput
+        userinput = ""
         workingPanel(value : "%")
+        
         
     }
     
-    @IBAction func calcDevision(_ sender: Any) {
+    @IBAction func calcDevision(_ sender: Any)
+    {
+        function = "/"
+        first = userinput
+        userinput = ""
         workingPanel(value : "/")
         
         
     }
     
-    @IBAction func calcMultiply(_ sender: Any) {
-        
+    @IBAction func calcMultiply(_ sender: Any)
+    {
+        function = "*"
+        first = userinput
+        userinput = ""
         workingPanel(value : "*")
         
     }
     
-    @IBAction func calcMinus(_ sender: Any) {
+    @IBAction func calcMinus(_ sender: Any)
+    {
+        function = "-"
+        first = userinput
+        userinput = ""
         workingPanel(value : "-")
         
     }
     
     
-    @IBAction func calcPlus(_ sender: Any) {
-        
+    @IBAction func calcPlus(_ sender: Any)
+    {
+        function = "+"
+        first = userinput
+        userinput = ""
         workingPanel(value : "+");
         
         
@@ -260,96 +294,179 @@ class ViewController: UIViewController
     
     @IBAction func calcTotal(_ sender: Any) {
         
-        //do{
-            let moduloCheck = workings.replacingOccurrences(of: "%", with: "*0.01")
-            let mathExpression = NSExpression(format: moduloCheck) // using NSEexpression for calculation total
-            let mathResult = mathExpression.expressionValue(with: nil, context: nil) as! Double // saving result as double
-            let totalResultString = resultFormation(mathResult: mathResult)
-            calculatorResult.text = totalResultString
-    
-        
-      
+        second = userinput
+        //first = String(result)
+        var firstInput = 0.0
+        var secondInput = 0.0
+        //firstInput = Double(first)!
+       // secondInput = Double(second)!
+        if(function == "+")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
             
-        //}
-       // catch{
-        //    clearAll()
-       // }
-    
-        
-    }
-    // creating a function for returning total calculation either in decimal or whole number
-    func resultFormation(mathResult: Double) -> String{
-        if(mathResult.truncatingRemainder(dividingBy: 1) == 0)
-           {
-            return String(format: "%.0f", mathResult);
+            result = firstInput + secondInput
+            calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+            
         }
+        else if(function == "-")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput - secondInput
+            calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+        }
+        else if (function == "*")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput * secondInput
+            calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+        }
+        else if (function == "/")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput / secondInput
+            calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+        }
+        
+       else if(function == "%")
+        {
+           firstInput = Double(first)!
+          // secondInput = Double(second)!
+           
+           //second = String(0.0)
+           result = firstInput * 0.01
+           calResultDisplay.text = String(result)
+           userinput = String(result)
+       }
+        
         else
         {
-            return String(format: "%.2f", mathResult);
+            calResultDisplay.text = "error"
         }
-            
+        
     }
-    
   
     @IBAction func calcPoint(_ sender: Any) {
+        
+        calcWorkingDisplay.text = ""
+        userinput += "."
+        calResultDisplay.text! += userinput
+        
         workingPanel(value : ".")
         
         
     }
     
     @IBAction func calcZero(_ sender: Any) {
+        userinput += "0"
+        calResultDisplay.text!=userinput
         workingPanel(value : "0")
+        
         
     }
     
     
-    @IBAction func calcOne(_ sender: Any) {
+    @IBAction func calcOne(_ sender: Any)
+    {
+        calcWorkingDisplay.text = ""
+        userinput += "1"
+        calResultDisplay.text!=userinput
         workingPanel(value : "1")
         
     }
-    @IBAction func calcTwo(_ sender: Any) {
+    @IBAction func calcTwo(_ sender: Any)
+    {
+        
+        calcWorkingDisplay.text = ""
+        userinput += "2"
+        calResultDisplay.text!=userinput
         workingPanel(value : "2")
         
     }
     
-    @IBAction func calcThree(_ sender: Any) {
+    @IBAction func calcThree(_ sender: Any)
+    {
+       
+        calcWorkingDisplay.text = ""
+        userinput += "3"
+        calResultDisplay.text!=userinput
         workingPanel(value : "3")
-        
     }
     
     
-    @IBAction func calcFour(_ sender: Any) {
+    @IBAction func calcFour(_ sender: Any)
+    {
+       
+        calcWorkingDisplay.text = ""
+        userinput += "4"
+        calResultDisplay.text!=userinput
         workingPanel(value : "4")
-        
     }
     
-    @IBAction func calcFive(_ sender: Any) {
+    @IBAction func calcFive(_ sender: Any)
+    {
+       
+        calcWorkingDisplay.text = ""
+        userinput += "5"
+        calResultDisplay.text!=userinput
         workingPanel(value : "5")
         
-        
     }
     
-    @IBAction func calcSix(_ sender: Any) {
+    @IBAction func calcSix(_ sender: Any)
+    {
+        
+        calcWorkingDisplay.text = ""
+        userinput += "6"
+        calResultDisplay.text!=userinput
         workingPanel(value : "6")
-        
-        
     }
     
-    @IBAction func calcSeven(_ sender: Any) {
+    @IBAction func calcSeven(_ sender: Any)
+    {
+       
+        calcWorkingDisplay.text = ""
+        userinput += "7"
+        calResultDisplay.text!=userinput
         workingPanel(value : "7")
-        
     }
+    
     @IBAction func calcEight(_ sender: Any) {
+        
+        calcWorkingDisplay.text = ""
+        userinput += "8"
+        calResultDisplay.text!=userinput
         workingPanel(value : "8")
         
     }
     
    
     @IBAction func calcNine(_ sender: Any) {
-        workingPanel(value : "9")
         
+        calcWorkingDisplay.text = ""
+        userinput += "9"
+        //calcWorkingDisplay.text! = userinput
+        calResultDisplay.text!=userinput
+        workingPanel(value : "9")
     }
     
-   
    
 }
