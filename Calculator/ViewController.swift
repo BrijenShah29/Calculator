@@ -183,7 +183,79 @@ class ViewController: UIViewController
         
     }
     
-
+    func calculation()
+    {
+        second = userinput
+        //first = String(result)
+        var firstInput = 0.0
+        var secondInput = 0.0
+        //firstInput = Double(first)!
+       // secondInput = Double(second)!
+        if(function == "+")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput + secondInput
+           calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+            
+        }
+        else if(function == "-")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput - secondInput
+           calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+        }
+        else if (function == "*")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput * secondInput
+            calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+        }
+        else if (function == "/")
+        {
+            firstInput = Double(first)!
+            secondInput = Double(second)!
+            
+            result = firstInput / secondInput
+            calResultDisplay.text = String(result)
+            userinput = String(result)
+            //workings = String(result)
+            //first = String(result)
+        }
+        
+       else if(function == "%")
+        {
+           firstInput = Double(first)!
+          // secondInput = Double(second)!
+           
+           //second = String(0.0)
+           result = firstInput * 0.01
+          calResultDisplay.text = String(result)
+           userinput = String(result)
+       }
+        
+        else
+        {
+            calResultDisplay.text = "0"
+        }
+        
+    }
+  
+        
   
     
     @IBAction func calcAC(_ sender: Any) {
@@ -255,6 +327,7 @@ class ViewController: UIViewController
     
     @IBAction func calcDevision(_ sender: Any)
     {
+        calculation()
         function = "/"
         first = userinput
         userinput = ""
@@ -265,6 +338,7 @@ class ViewController: UIViewController
     
     @IBAction func calcMultiply(_ sender: Any)
     {
+        calculation()
         function = "*"
         first = userinput
         userinput = ""
@@ -284,6 +358,7 @@ class ViewController: UIViewController
     
     @IBAction func calcPlus(_ sender: Any)
     {
+        calculation()
         function = "+"
         first = userinput
         userinput = ""
@@ -294,81 +369,85 @@ class ViewController: UIViewController
     
     @IBAction func calcTotal(_ sender: Any) {
         
-        second = userinput
-        //first = String(result)
-        var firstInput = 0.0
-        var secondInput = 0.0
-        //firstInput = Double(first)!
-       // secondInput = Double(second)!
-        if(function == "+")
-        {
-            firstInput = Double(first)!
-            secondInput = Double(second)!
-            
-            result = firstInput + secondInput
-            calResultDisplay.text = String(result)
-            userinput = String(result)
-            //workings = String(result)
-            //first = String(result)
-            
-        }
-        else if(function == "-")
-        {
-            firstInput = Double(first)!
-            secondInput = Double(second)!
-            
-            result = firstInput - secondInput
-            calResultDisplay.text = String(result)
-            userinput = String(result)
-            //workings = String(result)
-            //first = String(result)
-        }
-        else if (function == "*")
-        {
-            firstInput = Double(first)!
-            secondInput = Double(second)!
-            
-            result = firstInput * secondInput
-            calResultDisplay.text = String(result)
-            userinput = String(result)
-            //workings = String(result)
-            //first = String(result)
-        }
-        else if (function == "/")
-        {
-            firstInput = Double(first)!
-            secondInput = Double(second)!
-            
-            result = firstInput / secondInput
-            calResultDisplay.text = String(result)
-            userinput = String(result)
-            //workings = String(result)
-            //first = String(result)
-        }
+        calculation()
         
-       else if(function == "%")
-        {
-           firstInput = Double(first)!
-          // secondInput = Double(second)!
-           
-           //second = String(0.0)
-           result = firstInput * 0.01
-           calResultDisplay.text = String(result)
-           userinput = String(result)
-       }
-        
-        else
-        {
-            calResultDisplay.text = "error"
-        }
-        
+        /*
+         second = userinput
+         //first = String(result)
+         var firstInput = 0.0
+         var secondInput = 0.0
+         //firstInput = Double(first)!
+         // secondInput = Double(second)!
+         if(function == "+")
+         {
+         firstInput = Double(first)!
+         secondInput = Double(second)!
+         
+         result = firstInput + secondInput
+         calResultDisplay.text = String(result)
+         userinput = String(result)
+         //workings = String(result)
+         //first = String(result)
+         
+         }
+         else if(function == "-")
+         {
+         firstInput = Double(first)!
+         secondInput = Double(second)!
+         
+         result = firstInput - secondInput
+         calResultDisplay.text = String(result)
+         userinput = String(result)
+         //workings = String(result)
+         //first = String(result)
+         }
+         else if (function == "*")
+         {
+         firstInput = Double(first)!
+         secondInput = Double(second)!
+         
+         result = firstInput * secondInput
+         calResultDisplay.text = String(result)
+         userinput = String(result)
+         //workings = String(result)
+         //first = String(result)
+         }
+         else if (function == "/")
+         {
+         firstInput = Double(first)!
+         secondInput = Double(second)!
+         
+         result = firstInput / secondInput
+         calResultDisplay.text = String(result)
+         userinput = String(result)
+         //workings = String(result)
+         //first = String(result)
+         }
+         
+         else if(function == "%")
+         {
+         firstInput = Double(first)!
+         // secondInput = Double(second)!
+         
+         //second = String(0.0)
+         result = firstInput * 0.01
+         calResultDisplay.text = String(result)
+         userinput = String(result)
+         }
+         
+         else
+         {
+         calResultDisplay.text = "error"
+         }
+         
+         */
     }
   
     @IBAction func calcPoint(_ sender: Any) {
         
         calcWorkingDisplay.text = ""
         userinput += "."
-        calResultDisplay.text! += userinput
+        calResultDisplay.text! = userinput
         
         workingPanel(value : ".")
         
